@@ -11,7 +11,7 @@ import java.util.*;
 public class EditSupplierServlet extends HttpServlet {
     private static final String FILE_PATH = "/WEB-INF/data/suppliers.txt";
     
-@Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
@@ -27,5 +27,18 @@ public class EditSupplierServlet extends HttpServlet {
         request.setAttribute("supplier", supplier);
         request.getRequestDispatcher("/editSupplier.jsp").forward(request, response);
     }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String id = request.getParameter("id");
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String companyName = request.getParameter("companyName");
+        String address = request.getParameter("address");
+        String type = request.getParameter("type");
+        Supplier original = findSupplierById(id, request);
+
     
 }
